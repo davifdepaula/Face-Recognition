@@ -14,11 +14,12 @@ def parse_args():
 
     return parser.parse_args()
 
-def process_image(path_to_image): 
-    file_name = path_to_image.split('/')[-1]  
+def grayscale_image(image):
+    return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+def process_image(path_to_image):  
     image = cv2.imread(path_to_image)
     detector = Face_detector()
-
     face_positions = detector.get_face_postion(image)
     if face_positions is not None:
         cropped_face = detector.crop_face(image, face_positions)
@@ -52,6 +53,7 @@ def main():
         path_to_save = sub_dir.replace(path_to_images, path_to_save_processed_images)
         cropped_face = process_image(sub_dir)
         if cropped_face is not None:
+            cropped_face = grayscale_image(cropped_face)
             save_image(cropped_face, path_to_save)
 
 if __name__ == "__main__":
