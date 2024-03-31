@@ -4,19 +4,21 @@ import pickle
 import tensorflow
 import argparse
 import numpy as np
+from tensorflow import keras
 from imutils import paths
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 from keras.utils import to_categorical
-from keras.models import Sequential
+# from keras.models import Sequential
+from keras.models import Model
 from keras.optimizers import Adam
-from keras.layers import BatchNormalization
-from keras.layers import Conv2D
-from keras.layers import MaxPooling2D
-from keras.layers import Activation
-from keras.layers import Flatten
-from keras.layers import Dropout
-from keras.layers import Dense
+# from keras.layers import BatchNormalization
+# from keras.layers import Conv2D
+# from keras.layers import MaxPooling2D
+# from keras.layers import Activation
+# from keras.layers import Flatten
+# from keras.layers import Dropout
+# from keras.layers import Dense
 from keras import backend as K
 
 def parse_args():
@@ -38,7 +40,7 @@ def load_dataset(path):
         file_name_without_ext = file_name.split('.')[0]
         file_name_without_ext = file_name.split('_')[0]
         image = cv2.imread(file)
-        image = cv2.resize(image, (64, 64))
+        image = cv2.resize(image, (32, 32))
         x.append(image)
         y.append(file_name_without_ext)
     x = np.array(x, dtype="float") / 255.0
@@ -46,46 +48,64 @@ def load_dataset(path):
 
 
 def build_model(width, height, depth, classes):
-    model = Sequential()
-    inputShape = (height, width, depth)
-    chanDim = -1
-
-    if K.image_data_format() == "channels_first":
-        inputShape = (depth, height, width)
-        chanDim = 1
+    alpha = 0.3
     
-    model.add(Conv2D(16, (3, 3), padding="same",
-			input_shape=inputShape))
-    model.add(Activation("relu"))
-    model.add(BatchNormalization(axis=chanDim))
-    model.add(Conv2D(16, (3, 3), padding="same"))
-    model.add(Activation("relu"))
-    model.add(BatchNormalization(axis=chanDim))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
-    # second CONV => RELU => CONV => RELU => POOL layer set
-    model.add(Conv2D(32, (3, 3), padding="same"))
-    model.add(Activation("relu"))
-    model.add(BatchNormalization(axis=chanDim))
-    model.add(Conv2D(32, (3, 3), padding="same"))
-    model.add(Activation("relu"))
-    model.add(BatchNormalization(axis=chanDim))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
-    model.add(Flatten())
-    model.add(Dense(64))
-    model.add(Activation("relu"))
-    model.add(BatchNormalization())
-    model.add(Dropout(0.5))
-    # softmax classifier
-    model.add(Dense(classes))
-    model.add(Activation("softmax"))
-    # return the constructed network architecture
+    # Inputs
+    inputs = keras.Input(shape = (width, height, depth))
+
+    # Layer follows previous conv layer
+    layer1_3x3 = keras.layers.Convolution2D(32,  (3, 3), padding="valid", activation=None, strides=(2,2))(inputs)
+    layer1_3x3_activation = keras.layers.BatchNormalization()(layer1_3x3) # keras.layers.LeakyReLU(alpha)(layer1_3x3)
+
+    layer2_3x3 = keras.layers.Convolution2D(32,  (3, 3), padding="valid", activation=None, strides=(1,1))(layer1_3x3_activation)
+    layer2_3x3_activation =  keras.layers.BatchNormalization()(layer2_3x3) #keras.layers.LeakyReLU(alpha)(layer2_3x3)
+
+    layer3_3x3 = keras.layers.Convolution2D(64,  (3, 3), padding="same", activation=None, strides=(1,1))(layer2_3x3_activation)
+    layer3_3x3_activation = keras.layers.BatchNormalization()(layer3_3x3)#keras.layers.LeakyReLU(alpha)(layer3_3x3)
+
+    layer4_pool = keras.layers.MaxPooling2D((3, 3), strides=(2,2), padding="valid")(layer3_3x3_activation)
+    layer4_pool_activation = keras.layers.BatchNormalization()(layer4_pool)
+
+    layer4_3x3 = keras.layers.Convolution2D(96,  (3, 3), padding="valid", activation=None, strides=(2,2))(layer3_3x3_activation)
+    layer4_3x3_activation = keras.layers.BatchNormalization()(layer4_3x3)#keras.layers.LeakyReLU(alpha)(layer4_3x3)
+
+    layer_concatening_1 = keras.layers.Concatenate()([layer4_pool_activation, layer4_3x3_activation])
+
+    # left branch 
+    layer6_1x1_l = keras.layers.Convolution2D(64,  (1, 1), padding="same", activation=None, strides=(1,1))(layer_concatening_1)
+    layer6_1x1_l_activation = keras.layers.BatchNormalization()(layer6_1x1_l)
+
+    layer7_3x3_l = keras.layers.Convolution2D(96,  (3, 3), padding="valid", activation=None, strides=(1,1))(layer6_1x1_l_activation)
+    layer7_3x3_l_activation =  keras.layers.BatchNormalization()(layer7_3x3_l) #keras.layers.LeakyReLU(alpha)(layer7_3x3_l)
+
+    # right bramch
+    layer6_1x1_r = keras.layers.Convolution2D(64,  (1, 1), padding="same", activation=None, strides=(1,1))(layer_concatening_1)
+    layer6_1x1_r_activation = keras.layers.BatchNormalization()(layer6_1x1_r)
+
+    layer7_7x1_r = keras.layers.Convolution2D(64,  (7, 1), padding="same", activation=None, strides=(1,1))(layer6_1x1_r_activation)
+    layer8_1x7_r = keras.layers.Convolution2D(64, (1, 7), padding="same", activation=None, strides=(1,1))(layer7_7x1_r)
+
+    layer8_1x7_r_activation = keras.layers.BatchNormalization()(layer8_1x7_r)
+
+    layer9_3x3_r = keras.layers.Convolution2D(96, (3, 3), padding="valid", activation=None, strides=(1,1))(layer8_1x7_r_activation)
+    layer9_3x3_r_activation = keras.layers.BatchNormalization()(layer9_3x3_r)#keras.layers.LeakyReLU(alpha)(layer9_3x3_r)
+
+    layer_concatening_2 = keras.layers.Concatenate()([layer7_3x3_l_activation, layer9_3x3_r_activation])
+
+    # Flatten
+    flat = keras.layers.GlobalMaxPooling2D()(layer_concatening_2)
+
+    # Outputs
+    outs = []
+    outs.append(keras.layers.Dense(classes, activation='softmax')(flat))
+
+    # Final model definition
+    model = Model(inputs=inputs, outputs=outs)
     return model
 
 
 def main():
-    learning_rate = 1e-4
+    learning_rate = 1e-3
     batch_size = 64
     epochs = 100
 
@@ -112,7 +132,7 @@ def main():
     train_y, test_y, validation_y = to_categorical(train_y, num_classes), to_categorical(test_y, num_classes ), to_categorical(validation_y, num_classes)
     
     # opt = Adam(lr=learning_rate)
-    model = build_model(64, 64, 3, num_classes)
+    model = build_model(32, 32, 3, num_classes)
     model.compile(loss="binary_crossentropy", optimizer=Adam(learning_rate=learning_rate),
 	metrics=["accuracy"])
 
