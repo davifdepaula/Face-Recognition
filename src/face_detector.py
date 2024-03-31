@@ -37,7 +37,7 @@ class Face_detector:
     def crop_face(self, image, face_positions):
         x, y, w, h = face_positions
         cropped_image = image[y:y+h, x:x+w]
-
+        
         return cropped_image
     
     def save_cropped_face(self, image, path_to_save):

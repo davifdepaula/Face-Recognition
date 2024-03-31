@@ -90,7 +90,7 @@ def main():
 
     print("Saving label encoding ...")
 
-    f = open(os.path.join(path_to_save_models, 'encoding'), "wb")
+    f = open(os.path.join(path_to_save_models, 'encoder.pkl'), "wb")
     f.write(pickle.dumps(le))
     f.close()    
 
