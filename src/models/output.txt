@@ -1,0 +1,314 @@
+Acurácia: 85.85 %
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+Esperado	Predito
+Andy Samberg	Andy Samberg
+Andy Samberg	Andy Samberg
+Roger Federer	Roger Federer
+Henry Cavill	Henry Cavill
+Andy Samberg	Elizabeth Olsen
+Jessica Alba	Jessica Alba
+Andy Samberg	Andy Samberg
+Natalie Portman	Natalie Portman
+Brad Pitt	Brad Pitt
+Hrithik Roshan	Hrithik Roshan
+Brad Pitt	Kashyap
+Alexandra Daddario	Alexandra Daddario
+Margot Robbie	Margot Robbie
+Robert Downey Jr	Robert Downey Jr
+Roger Federer	Roger Federer
+Dwayne Johnson	Dwayne Johnson
+Hugh Jackman	Alia Bhatt
+Brad Pitt	Brad Pitt
+Zac Efron	Zac Efron
+Jessica Alba	Jessica Alba
+Alexandra Daddario	Alexandra Daddario
+Natalie Portman	Natalie Portman
+Robert Downey Jr	Robert Downey Jr
+Billie Eilish	Camila Cabello
+Billie Eilish	Billie Eilish
+Natalie Portman	Natalie Portman
+Brad Pitt	Brad Pitt
+Henry Cavill	Tom Cruise
+Marmik	Marmik
+Billie Eilish	Billie Eilish
+Henry Cavill	Henry Cavill
+Hrithik Roshan	Hrithik Roshan
+Robert Downey Jr	Robert Downey Jr
+Zac Efron	Zac Efron
+Priyanka Chopra	Priyanka Chopra
+Brad Pitt	Brad Pitt
+Henry Cavill	Henry Cavill
+Elizabeth Olsen	Elizabeth Olsen
+Hugh Jackman	Hrithik Roshan
+Priyanka Chopra	Priyanka Chopra
+Anushka Sharma	Jessica Alba
+Ellen Degeneres	Ellen Degeneres
+Claire Holt	Charlize Theron
+Ellen Degeneres	Ellen Degeneres
+Elizabeth Olsen	Elizabeth Olsen
+Margot Robbie	Margot Robbie
+Alia Bhatt	Alia Bhatt
+Jessica Alba	Jessica Alba
+Vijay Deverakonda	Vijay Deverakonda
+Zac Efron	Zac Efron
+Hugh Jackman	Hugh Jackman
+Claire Holt	Claire Holt
+Natalie Portman	Natalie Portman
+Margot Robbie	Margot Robbie
+Natalie Portman	Natalie Portman
+Andy Samberg	Andy Samberg
+Andy Samberg	Andy Samberg
+Dwayne Johnson	Charlize Theron
+Natalie Portman	Natalie Portman
+Amitabh Bachchan	Dwayne Johnson
+Anushka Sharma	Anushka Sharma
+Brad Pitt	Brad Pitt
+Jessica Alba	Jessica Alba
+Henry Cavill	Henry Cavill
+Charlize Theron	Charlize Theron
+Billie Eilish	Billie Eilish
+Natalie Portman	Natalie Portman
+Priyanka Chopra	Priyanka Chopra
+Charlize Theron	Charlize Theron
+Zac Efron	Zac Efron
+Charlize Theron	Charlize Theron
+Brad Pitt	Kashyap
+Tom Cruise	Tom Cruise
+Ellen Degeneres	Ellen Degeneres
+Virat Kohli	Virat Kohli
+Robert Downey Jr	Robert Downey Jr
+Tom Cruise	Tom Cruise
+Brad Pitt	Brad Pitt
+Amitabh Bachchan	Amitabh Bachchan
+Jessica Alba	Jessica Alba
+Priyanka Chopra	Priyanka Chopra
+Natalie Portman	Natalie Portman
+Alia Bhatt	Alia Bhatt
+Zac Efron	Zac Efron
+Virat Kohli	Virat Kohli
+Hrithik Roshan	Hrithik Roshan
+Kashyap	Kashyap
+Billie Eilish	Billie Eilish
+Jessica Alba	Jessica Alba
+Roger Federer	Roger Federer
+Andy Samberg	Andy Samberg
+Roger Federer	Roger Federer
+Andy Samberg	Andy Samberg
+Charlize Theron	Charlize Theron
+Claire Holt	Billie Eilish
+Henry Cavill	Henry Cavill
+Robert Downey Jr	Robert Downey Jr
+Brad Pitt	Brad Pitt
+Elizabeth Olsen	Elizabeth Olsen
+Akshay Kumar	Akshay Kumar
+Lisa Kudrow	Lisa Kudrow
+Margot Robbie	Margot Robbie
+Robert Downey Jr	Robert Downey Jr
+Anushka Sharma	Anushka Sharma
+Billie Eilish	Billie Eilish
+Elizabeth Olsen	Elizabeth Olsen
+Hrithik Roshan	Hrithik Roshan
+Brad Pitt	Brad Pitt
+Claire Holt	Claire Holt
+Robert Downey Jr	Robert Downey Jr
+Billie Eilish	Billie Eilish
+Hrithik Roshan	Hrithik Roshan
+Tom Cruise	Tom Cruise
+Robert Downey Jr	Robert Downey Jr
+Alexandra Daddario	Alexandra Daddario
+Priyanka Chopra	Priyanka Chopra
+Brad Pitt	Brad Pitt
+Henry Cavill	Henry Cavill
+Brad Pitt	Brad Pitt
+Camila Cabello	Camila Cabello
+Robert Downey Jr	Amitabh Bachchan
+Camila Cabello	Camila Cabello
+Brad Pitt	Brad Pitt
+Charlize Theron	Charlize Theron
+Jessica Alba	Jessica Alba
+Lisa Kudrow	Lisa Kudrow
+Tom Cruise	Tom Cruise
+Alexandra Daddario	Alexandra Daddario
+Dwayne Johnson	Dwayne Johnson
+Brad Pitt	Brad Pitt
+Jessica Alba	Jessica Alba
+Margot Robbie	Margot Robbie
+Claire Holt	Camila Cabello
+Priyanka Chopra	Priyanka Chopra
+Jessica Alba	Jessica Alba
+Robert Downey Jr	Virat Kohli
+Vijay Deverakonda	Vijay Deverakonda
+Vijay Deverakonda	Vijay Deverakonda
+Tom Cruise	Tom Cruise
+Zac Efron	Zac Efron
+Robert Downey Jr	Robert Downey Jr
+Henry Cavill	Henry Cavill
+Roger Federer	Zac Efron
+Marmik	Jessica Alba
+Robert Downey Jr	Robert Downey Jr
+Ellen Degeneres	Ellen Degeneres
+Akshay Kumar	Akshay Kumar
+Jessica Alba	Jessica Alba
+Henry Cavill	Henry Cavill
+Priyanka Chopra	Priyanka Chopra
+Charlize Theron	Alexandra Daddario
+Natalie Portman	Natalie Portman
+Kashyap	Kashyap
+Lisa Kudrow	Lisa Kudrow
+Brad Pitt	Brad Pitt
+Camila Cabello	Camila Cabello
+Priyanka Chopra	Priyanka Chopra
+Lisa Kudrow	Lisa Kudrow
+Amitabh Bachchan	Amitabh Bachchan
+Charlize Theron	Charlize Theron
+Tom Cruise	Tom Cruise
+Vijay Deverakonda	Vijay Deverakonda
+Claire Holt	Natalie Portman
+Amitabh Bachchan	Amitabh Bachchan
+Charlize Theron	Charlize Theron
+Charlize Theron	Alexandra Daddario
+Dwayne Johnson	Dwayne Johnson
+Henry Cavill	Henry Cavill
+Anushka Sharma	Anushka Sharma
+Tom Cruise	Tom Cruise
+Andy Samberg	Henry Cavill
+Billie Eilish	Billie Eilish
+Ellen Degeneres	Ellen Degeneres
+Dwayne Johnson	Dwayne Johnson
+Jessica Alba	Alia Bhatt
+Robert Downey Jr	Robert Downey Jr
+Zac Efron	Zac Efron
+Billie Eilish	Billie Eilish
+Anushka Sharma	Anushka Sharma
+Billie Eilish	Camila Cabello
+Alexandra Daddario	Alexandra Daddario
+Brad Pitt	Brad Pitt
+Camila Cabello	Anushka Sharma
+Vijay Deverakonda	Vijay Deverakonda
+Hrithik Roshan	Hrithik Roshan
+Hrithik Roshan	Hrithik Roshan
+Claire Holt	Claire Holt
+Margot Robbie	Margot Robbie
+Camila Cabello	Camila Cabello
+Alexandra Daddario	Alexandra Daddario
+Charlize Theron	Charlize Theron
+Kashyap	Kashyap
+Alia Bhatt	Alia Bhatt
+Henry Cavill	Henry Cavill
+Hugh Jackman	Hugh Jackman
+Vijay Deverakonda	Akshay Kumar
+Jessica Alba	Jessica Alba
+Henry Cavill	Henry Cavill
+Virat Kohli	Virat Kohli
+Kashyap	Alia Bhatt
+Jessica Alba	Jessica Alba
+Hugh Jackman	Hugh Jackman
+Alia Bhatt	Alia Bhatt
+Billie Eilish	Billie Eilish
+Dwayne Johnson	Dwayne Johnson
+Zac Efron	Zac Efron
+Roger Federer	Roger Federer
+Brad Pitt	Brad Pitt
+Camila Cabello	Camila Cabello
+Elizabeth Olsen	Elizabeth Olsen
+Alia Bhatt	Alia Bhatt
+Zac Efron	Zac Efron
+Hrithik Roshan	Hrithik Roshan
+Claire Holt	Jessica Alba
+Elizabeth Olsen	Elizabeth Olsen
+Alexandra Daddario	Alexandra Daddario
+Vijay Deverakonda	Vijay Deverakonda
+Claire Holt	Claire Holt
+Anushka Sharma	Anushka Sharma
+Charlize Theron	Charlize Theron
+Akshay Kumar	Tom Cruise
+Brad Pitt	Brad Pitt
+Claire Holt	Claire Holt
+Billie Eilish	Billie Eilish
+Hugh Jackman	Hugh Jackman
+Margot Robbie	Margot Robbie
+Natalie Portman	Natalie Portman
+Henry Cavill	Henry Cavill
+Kashyap	Kashyap
+Vijay Deverakonda	Vijay Deverakonda
+Hugh Jackman	Hugh Jackman
+Priyanka Chopra	Priyanka Chopra
+Margot Robbie	Margot Robbie
+Camila Cabello	Camila Cabello
+Hugh Jackman	Hugh Jackman
+Roger Federer	Natalie Portman
+Ellen Degeneres	Tom Cruise
+Hugh Jackman	Billie Eilish
+Vijay Deverakonda	Camila Cabello
+Charlize Theron	Charlize Theron
+Robert Downey Jr	Robert Downey Jr
+Courtney Cox	Courtney Cox
+Charlize Theron	Charlize Theron
+Brad Pitt	Brad Pitt
+Tom Cruise	Tom Cruise
+Natalie Portman	Jessica Alba
+Hrithik Roshan	Hrithik Roshan
+Elizabeth Olsen	Elizabeth Olsen
+Amitabh Bachchan	Amitabh Bachchan
+Henry Cavill	Henry Cavill
+Hrithik Roshan	Hrithik Roshan
+Henry Cavill	Henry Cavill
+Vijay Deverakonda	Akshay Kumar
+Brad Pitt	Brad Pitt
+Roger Federer	Roger Federer
+Brad Pitt	Brad Pitt
+Camila Cabello	Camila Cabello
+Robert Downey Jr	Robert Downey Jr
+Anushka Sharma	Anushka Sharma
+Andy Samberg	Andy Samberg
+Lisa Kudrow	Lisa Kudrow
+Dwayne Johnson	Dwayne Johnson
+Roger Federer	Roger Federer
+Roger Federer	Roger Federer
+Billie Eilish	Billie Eilish
+Hugh Jackman	Hugh Jackman
+Natalie Portman	Robert Downey Jr
+Natalie Portman	Jessica Alba
+Lisa Kudrow	Lisa Kudrow
+Akshay Kumar	Tom Cruise
+Hugh Jackman	Hugh Jackman
+Robert Downey Jr	Robert Downey Jr
+Natalie Portman	Natalie Portman
+Robert Downey Jr	Robert Downey Jr
+Anushka Sharma	Alia Bhatt
+Alexandra Daddario	Alexandra Daddario
+Roger Federer	Roger Federer
+Alexandra Daddario	Alexandra Daddario
+Courtney Cox	Courtney Cox
+Hrithik Roshan	Hrithik Roshan
+Zac Efron	Zac Efron
+Lisa Kudrow	Lisa Kudrow
+Anushka Sharma	Anushka Sharma
+Courtney Cox	Courtney Cox
+Natalie Portman	Natalie Portman
+Priyanka Chopra	Priyanka Chopra
+Jessica Alba	Jessica Alba
+Elizabeth Olsen	Elizabeth Olsen
+Elizabeth Olsen	Elizabeth Olsen
+Jessica Alba	Jessica Alba
+Akshay Kumar	Zac Efron
+Camila Cabello	Camila Cabello
+Natalie Portman	Natalie Portman
+Brad Pitt	Brad Pitt
+Robert Downey Jr	Billie Eilish
+Lisa Kudrow	Marmik
+Anushka Sharma	Alia Bhatt
+Brad Pitt	Brad Pitt
+Anushka Sharma	Anushka Sharma
+Robert Downey Jr	Robert Downey Jr
+Alia Bhatt	Alia Bhatt
+Dwayne Johnson	Dwayne Johnson
+Camila Cabello	Camila Cabello
+Akshay Kumar	Akshay Kumar
+Lisa Kudrow	Lisa Kudrow
+Henry Cavill	Zac Efron
+Zac Efron	Billie Eilish
+Priyanka Chopra	Priyanka Chopra
+Vijay Deverakonda	Vijay Deverakonda
+Zac Efron	Zac Efron
+Brad Pitt	Brad Pitt
