@@ -1,8 +1,9 @@
 import os
 import cv2
-from imutils import paths
 import shutil
 import argparse
+import numpy as np
+from imutils import paths
 from face_detector import Face_detector
 
 
