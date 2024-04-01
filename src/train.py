@@ -3,13 +3,13 @@ import cv2
 import pickle
 import argparse
 import numpy as np
-from tensorflow import keras
 from imutils import paths
-from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import accuracy_score
-from keras.utils import to_categorical
+from tensorflow import keras
 from keras.models import Model
 from keras.optimizers import Adam
+from keras.utils import to_categorical
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import LabelEncoder
 from keras.callbacks import LearningRateScheduler
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
