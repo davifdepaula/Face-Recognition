@@ -1,7 +1,6 @@
 import os
 import cv2
 import pickle
-import tensorflow
 import argparse
 import numpy as np
 from tensorflow import keras
@@ -9,17 +8,10 @@ from imutils import paths
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 from keras.utils import to_categorical
-# from keras.models import Sequential
 from keras.models import Model
 from keras.optimizers import Adam
-# from keras.layers import BatchNormalization
-# from keras.layers import Conv2D
-# from keras.layers import MaxPooling2D
-# from keras.layers import Activation
-# from keras.layers import Flatten
-# from keras.layers import Dropout
-# from keras.layers import Dense
-from keras import backend as K
+from keras.callbacks import LearningRateScheduler
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -31,20 +23,54 @@ def parse_args():
 
     return parser.parse_args()
 
-def load_dataset(path):
+def encoder(y, num_classes):
+    le = LabelEncoder()
+    y = le.fit_transform(y)
+    y = to_categorical(y, num_classes)
+
+    return y
+
+def load_dataset(path, num_classes):
     x = []
     y = []
+
     image_paths = list(paths.list_images(path))
+
     for file in image_paths:
         file_name = file.split('/')[-1]
         file_name_without_ext = file_name.split('.')[0]
         file_name_without_ext = file_name.split('_')[0]
         image = cv2.imread(file)
-        image = cv2.resize(image, (32, 32))
+        image = cv2.resize(image, (100, 100))
         x.append(image)
         y.append(file_name_without_ext)
     x = np.array(x, dtype="float") / 255.0
+    y = encoder(np.array(y), num_classes) 
     return x, y
+
+def lr_schedule(epoch):
+    """Learning Rate Schedule
+
+    Learning rate is scheduled to be reduced after 80, 120, 160, 180 epochs.
+    Called automatically every epoch as part of callbacks during training.
+
+    # Arguments
+        epoch (int): The number of epochs
+
+    # Returns
+        lr (float32): learning rate
+    """
+    lr = 1e-3
+    if epoch > 70:
+        lr *= 0.5e-3
+    elif epoch > 50:
+        lr *= 1e-3
+    elif epoch > 30:
+        lr *= 1e-2
+    elif epoch > 10:
+        lr *= 1e-1
+    print('Learning rate: ', lr)
+    return lr
 
 
 def build_model(width, height, depth, classes):
@@ -108,44 +134,51 @@ def main():
     learning_rate = 1e-3
     batch_size = 64
     epochs = 100
-
     args = parse_args()
-    le = LabelEncoder()
-    
     train_dataset = os.path.join(args.dataset, 'training')
     test_dataset = os.path.join(args.dataset, 'testing')
     validation_dataset = os.path.join(args.dataset, 'validation')
-
-    train_x, train_y = load_dataset(train_dataset)
-    test_x, test_y = load_dataset(test_dataset)
-    validation_x, validation_y = load_dataset(validation_dataset)
-
     encoder_path = os.path.join(args.models, 'encoder.pkl')
 
     with open(encoder_path, 'rb') as f:
         loaded_label_encoder = pickle.load(f)
-
-    le = LabelEncoder()
-    num_classes = len(loaded_label_encoder.classes_)
-
-    train_y, test_y, validation_y = le.fit_transform(train_y), le.fit_transform(test_y), le.fit_transform(validation_y)
-    train_y, test_y, validation_y = to_categorical(train_y, num_classes), to_categorical(test_y, num_classes ), to_categorical(validation_y, num_classes)
     
-    # opt = Adam(lr=learning_rate)
-    model = build_model(32, 32, 3, num_classes)
-    model.compile(loss="binary_crossentropy", optimizer=Adam(learning_rate=learning_rate),
+    classes = loaded_label_encoder.classes_
+    num_classes = len(classes)
+
+    train_x, train_y = load_dataset(train_dataset, num_classes)
+    test_x, test_y = load_dataset(test_dataset, num_classes)
+    validation_x, validation_y = load_dataset(validation_dataset, num_classes)
+
+    aug = ImageDataGenerator(rotation_range=20, zoom_range=0.15,
+	width_shift_range=0.2, height_shift_range=0.2, shear_range=0.15,
+	horizontal_flip=True, fill_mode="nearest")
+
+    model = build_model(100, 100, 3, num_classes)
+    model.compile(loss="binary_crossentropy", optimizer=Adam(learning_rate=lr_schedule(0)),
 	metrics=["accuracy"])
 
     print("[INFO] training network for {} epochs...".format(epochs))
-    H = model.fit(x=train_x, y=train_y, batch_size=batch_size,
+    lr_scheduler = LearningRateScheduler(lr_schedule)
+    H = model.fit(aug.flow(x=train_x, y=train_y, batch_size=batch_size),
               validation_data=(validation_x, validation_y),
-              steps_per_epoch= len(train_x) // epochs, epochs=epochs)
+              epochs=epochs)
     
     print("[INFO] evaluating network...")
     predictions = model.predict(x=test_x)
-    acuracia = round(accuracy_score(test_y.argmax(axis=1),
-        predictions.argmax(axis=1)), 2) * 100
-    print(f'acuracia do modelo: {acuracia}')
+    count = 0
+    for  i in range(len(predictions)):
+        if test_y.argmax(axis=1)[i] == predictions.argmax(axis=1)[i]:
+            count += 1
+    
+    acuracia = count/len(test_y)
+    with open(os.path.join(args.output_model, 'output.txt'), 'w') as f:
+        # Escreve a acurácia
+        f.write(f"Acurácia: {acuracia * 100:.2f} %\n")
+        f.write('_ ' * len('Esperado\tPredito') + '\n')      
+        f.write("Esperado\tPredito\n")
+        for esperado, predito in zip(test_y.argmax(axis=1), predictions.argmax(axis=1)):
+            f.write(f"{classes[esperado]}\t{classes[predito]}\n")
     
     # save the network to disk
     print("[INFO] serializing network to '{}'...".format(args.output_model))
